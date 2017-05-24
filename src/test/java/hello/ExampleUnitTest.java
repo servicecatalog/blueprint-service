@@ -1,3 +1,7 @@
+/**
+ * Copyright FUJITSU LIMITED 2017
+ */
+
 package hello;
 
 import org.junit.Assert;
