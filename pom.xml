@@ -35,7 +35,7 @@
             <configuration>
               <!-- todo don't hardcode docker machine ip -->
               <dockerHost>https://127.0.0.1:2376</dockerHost>
-              <certPath>${user.home}\.docker\machine\machines\default</certPath>
+              <certPath>${user.home}/.docker/machine/machines/default</certPath>
               <images>
                 <image>
                   <name>grubskim/blueprint-service:${project.version}-${maven.build.timestamp}</name>
