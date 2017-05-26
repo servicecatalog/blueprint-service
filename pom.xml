@@ -34,7 +34,6 @@
             <version>0.21.0</version>
             <configuration>
               <!-- todo don't hardcode docker machine ip -->
-              <dockerHost>https://127.0.0.1:2376</dockerHost>
               <images>
                 <image>
                   <name>grubskim/blueprint-service:${project.version}-${maven.build.timestamp}</name>
