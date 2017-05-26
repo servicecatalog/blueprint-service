@@ -2,6 +2,8 @@
 language: java
 jdk: oraclejdk8
 
+services:
+  - docker
 addons:
   sonarqube:
     organization: blueprint-service
