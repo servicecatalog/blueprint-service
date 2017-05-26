@@ -1,11 +1,11 @@
-package controllers;
+package org.oscm.controllers;
 
-import domainobjects.BlueprintRequest;
+import org.oscm.domainobjects.BlueprintRequest;
 import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import services.BlueprintService;
+import org.oscm.services.BlueprintService;
 
 /**
  * Created by BadziakP on 2017-05-25.

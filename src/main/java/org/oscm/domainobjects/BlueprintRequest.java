@@ -1,4 +1,4 @@
-package domainobjects;
+package org.oscm.domainobjects;
 
 import java.util.Map;
 
