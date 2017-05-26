@@ -13,5 +13,5 @@ addons:
       - master
 
 script:
-- mvn clean install -P docker
+- mvn clean install -P docker -Ddocker.username=$DOCKER_USER -Ddocker.password=$DOCKER_PWD
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar

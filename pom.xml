@@ -33,7 +33,6 @@
             <artifactId>docker-maven-plugin</artifactId>
             <version>0.21.0</version>
             <configuration>
-              <!-- todo don't hardcode docker machine ip -->
               <images>
                 <image>
                   <name>grubskim/blueprint-service:${project.version}-${maven.build.timestamp}</name>
