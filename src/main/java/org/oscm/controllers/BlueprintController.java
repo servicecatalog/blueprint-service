@@ -21,9 +21,13 @@ public class BlueprintController {
      * @param blueprintRequest
      * @return
      */
-    @RequestMapping(value = "/getBlueprint", method = RequestMethod.POST, consumes = "application/json",produces =
-        "application/json")
-    public CatalogEntitySummary getBlueprint(@RequestBody BlueprintRequest blueprintRequest) {
+    @RequestMapping(value = "/blueprints/{name}/{version:.+}", method = RequestMethod.POST,
+        consumes = "application/json", produces = "application/json")
+    public CatalogEntitySummary getBlueprint(@PathVariable String name,
+            @PathVariable String version,
+            @RequestBody BlueprintRequest blueprintRequest) throws Exception {
+        blueprintRequest.setSymbolicName(name);
+        blueprintRequest.setVersion(version);
         return blueprintService.getYamlTemplate(blueprintRequest);
     }
 }

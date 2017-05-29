@@ -3,6 +3,7 @@ package org.oscm.services;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.apache.brooklyn.rest.api.CatalogApi;
 import org.apache.brooklyn.rest.client.BrooklynApi;
 import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
 import org.apache.log4j.Logger;
@@ -18,17 +19,18 @@ public class BlueprintService {
 
     private final Logger logger = Logger.getLogger(this.getClass());
 
-    public CatalogEntitySummary getYamlTemplate(BlueprintRequest blueprintRequest) {
-        BrooklynApi api = new BrooklynApi(blueprintRequest.getEndpoint(), null, 20, 5000);
+    public CatalogEntitySummary getYamlTemplate(BlueprintRequest blueprintRequest) throws Exception {
         try {
-            CatalogEntitySummary catalogEntitySummary =  api.getCatalogApi().getApplication(blueprintRequest.getSymbolicName(),
-                blueprintRequest.getVersion());
+            CatalogEntitySummary catalogEntitySummary = getCatalogApi(
+                    blueprintRequest.getEndpoint()).getApplication(
+                            blueprintRequest.getSymbolicName(),
+                            blueprintRequest.getVersion());
 
             return createEntityBasedOnTemplate(catalogEntitySummary, blueprintRequest.getParams());
         } catch (Exception e) {
             logger.error("Something went wrong with Brooklyn!!", e);
+            throw e;
         }
-        return null;
     }
 
     private CatalogEntitySummary createEntityBasedOnTemplate(
@@ -44,5 +46,10 @@ public class BlueprintService {
                 new HashSet<>(template.getTags()), template.getConfig(),
                 template.getSensors(), template.getEffectors(),
                 template.isDeprecated(), template.getLinks());
+    }
+
+    public CatalogApi getCatalogApi(String endpoint) {
+        BrooklynApi api = new BrooklynApi(endpoint, null, 20, 5000);
+        return api.getCatalogApi();
     }
 }
