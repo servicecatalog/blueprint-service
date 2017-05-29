@@ -4,32 +4,19 @@
 
 package org.oscm.hello;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.brooklyn.rest.api.CatalogApi;
-import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
-import org.apache.brooklyn.rest.domain.EffectorSummary;
-import org.apache.brooklyn.rest.domain.EntityConfigSummary;
-import org.apache.brooklyn.rest.domain.SensorSummary;
-import org.apache.brooklyn.util.core.task.SequentialTask;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.*;
-import org.oscm.domainobjects.BlueprintRequest;
-import org.oscm.services.BlueprintService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
-import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.apache.brooklyn.rest.api.CatalogApi;
+import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
+import org.junit.Assert;
+import org.junit.Test;
+
+import org.oscm.domainobjects.BlueprintRequest;
+import org.oscm.services.BlueprintService;
+
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
