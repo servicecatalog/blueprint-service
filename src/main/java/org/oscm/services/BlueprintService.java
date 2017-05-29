@@ -18,7 +18,7 @@ public class BlueprintService {
 
     private final Logger logger = Logger.getLogger(this.getClass());
 
-    public CatalogEntitySummary getYamlTemplate(BlueprintRequest blueprintRequest) {
+    public CatalogEntitySummary getYamlTemplate(BlueprintRequest blueprintRequest) throws Exception {
         BrooklynApi api = new BrooklynApi(blueprintRequest.getEndpoint(), null, 20, 5000);
         try {
             CatalogEntitySummary catalogEntitySummary =  api.getCatalogApi().getApplication(blueprintRequest.getSymbolicName(),
@@ -27,8 +27,8 @@ public class BlueprintService {
             return createEntityBasedOnTemplate(catalogEntitySummary, blueprintRequest.getParams());
         } catch (Exception e) {
             logger.error("Something went wrong with Brooklyn!!", e);
+            throw e;
         }
-        return null;
     }
 
     private CatalogEntitySummary createEntityBasedOnTemplate(
