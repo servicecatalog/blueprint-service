@@ -22,7 +22,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
 /**
- * Created by PLGrubskiM on 2017-05-24.
+ *  Created by PLGrubskiM on 2017-05-24.
  */
 public class ExampleUnitTest {
 
