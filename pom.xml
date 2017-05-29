@@ -17,7 +17,7 @@
 
   <profiles>
     <profile>
-      <!-- Default profile, packages a fat jar with dependencies  -->
+      <!-- Default profile, packages a fat jar with dependencies -->
       <id>dev</id>
       <activation>
         <activeByDefault>true</activeByDefault>

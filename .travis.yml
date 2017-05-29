@@ -9,6 +9,8 @@ addons:
     organization: blueprint-service
     token:
       secure: $SONAR_TOKEN
+    branches:
+      - master
 
 before_install:
   - pip install --user codecov
