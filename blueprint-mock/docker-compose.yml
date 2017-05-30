@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  mockservice:
+    build: .
+    ports:
+      - "8070:8070"
+  blueprint:
+    build: ..
+    links:
+      - mockservice
+    ports:
+      - "8090:8090"
