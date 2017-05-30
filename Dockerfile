@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM openjdk:jre
 VOLUME /tmp
 ADD target/oscm-blueprint-service-0.1.0.jar app.jar
 RUN sh -c 'touch /app.jar'

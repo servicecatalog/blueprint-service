@@ -4,6 +4,13 @@
 
 package org.oscm.main;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 import org.apache.brooklyn.rest.api.CatalogApi;
 import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
 import org.junit.Assert;
@@ -11,17 +18,8 @@ import org.junit.Test;
 import org.oscm.domainobjects.BlueprintRequest;
 import org.oscm.services.BlueprintService;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-
 /**
- * Created by PLGrubskiM on 2017-05-24.
+ *  Created by PLGrubskiM on 2017-05-24.
  */
 public class ExampleUnitTest {
 
