@@ -7,6 +7,9 @@ import org.apache.brooklyn.rest.api.CatalogApi;
 import org.apache.brooklyn.rest.client.BrooklynApi;
 import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
 import org.apache.log4j.Logger;
+import org.oscm.common.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import org.oscm.domainobjects.BlueprintRequest;
@@ -17,16 +20,20 @@ import org.oscm.domainobjects.BlueprintRequest;
 @Service
 public class BlueprintService {
 
+    @Autowired
+    private Environment environment;
+
     private final Logger logger = Logger.getLogger(this.getClass());
 
-    public CatalogEntitySummary getYamlTemplate(BlueprintRequest blueprintRequest) throws Exception {
+    public CatalogEntitySummary getYamlTemplate(
+            BlueprintRequest blueprintRequest) throws Exception {
         try {
-            CatalogEntitySummary catalogEntitySummary = getCatalogApi(
-                    blueprintRequest.getEndpoint()).getApplication(
-                            blueprintRequest.getSymbolicName(),
+            CatalogEntitySummary catalogEntitySummary = getCatalogApi()
+                    .getApplication(blueprintRequest.getSymbolicName(),
                             blueprintRequest.getVersion());
 
-            return createEntityBasedOnTemplate(catalogEntitySummary, blueprintRequest.getParams());
+            return createEntityBasedOnTemplate(catalogEntitySummary,
+                    blueprintRequest.getParams());
         } catch (Exception e) {
             logger.error("Something went wrong with Brooklyn!!", e);
             throw e;
@@ -48,8 +55,12 @@ public class BlueprintService {
                 template.isDeprecated(), template.getLinks());
     }
 
-    public CatalogApi getCatalogApi(String endpoint) {
-        BrooklynApi api = new BrooklynApi(endpoint, null, 20, 5000);
+    public CatalogApi getCatalogApi() {
+        String endpoint = environment
+                .getProperty(Constants.BROOKLYN_ADDRESS_PROPERTY);
+        BrooklynApi api = new BrooklynApi(endpoint, null,
+                Constants.BROOKLYN_MAX_POOL_SIZE,
+                Constants.BROOKLYN_TIMEOUT_IN_MILIS);
         return api.getCatalogApi();
     }
 }

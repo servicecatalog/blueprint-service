@@ -2,34 +2,20 @@
  * Copyright FUJITSU LIMITED 2017
  */
 
-package org.oscm.hello;
+package org.oscm.main;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.brooklyn.rest.api.CatalogApi;
 import org.apache.brooklyn.rest.domain.CatalogEntitySummary;
-import org.apache.brooklyn.rest.domain.EffectorSummary;
-import org.apache.brooklyn.rest.domain.EntityConfigSummary;
-import org.apache.brooklyn.rest.domain.SensorSummary;
-import org.apache.brooklyn.util.core.task.SequentialTask;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.*;
 import org.oscm.domainobjects.BlueprintRequest;
 import org.oscm.services.BlueprintService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -40,17 +26,12 @@ import static org.mockito.Mockito.spy;
 public class ExampleUnitTest {
 
     @Test
-    public void someUnitTest() {
-        Assert.assertTrue(true);
-    }
-
-    @Test
     public void testGetYaml() throws Exception {
         //given
         BlueprintService blueprintService = spy(BlueprintService.class);
         BlueprintRequest blueprintRequest = prepareBlueprintRequest();
         CatalogApi catalogApi = mock(CatalogApi.class);
-        doReturn(catalogApi).when(blueprintService).getCatalogApi(anyString());
+        doReturn(catalogApi).when(blueprintService).getCatalogApi();
         CatalogEntitySummary catalogEntitySummary = prepareCatalogEntry();
         doReturn(catalogEntitySummary).when(catalogApi).getApplication(anyString(), anyString());
 
@@ -82,4 +63,5 @@ public class ExampleUnitTest {
             new HashSet<>(), new HashSet<>(), new HashSet<>(), false, new HashMap<>());
         return catalogEntitySummary;
     }
+
 }
